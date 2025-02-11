@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Rating with Backend Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .candidate {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        label {
+            flex: 1;
+            text-align: left;
+        }
+
+        select {
+            width: 60px;
+            padding: 5px;
+        }
+
+        input[type="email"] {
+            padding: 5px;
+            width: 80%;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 10px;
+        }
+
+        h3 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Rate the Candidates</h2>
+        <form id="ratingForm">
+            <div>
+                <label for="email">Enter Email:</label><br>
+                <input type="email" id="email" required placeholder="example@domain.com">
+            </div>
+            <div id="candidates"></div>
+            <br>
+            <button type="submit">Submit Ratings</button>
+        </form>
+        <div id="averageRatings"></div>
+    </div>
+
+    <script>
+        // List of candidate names
+        const candidates = [
+            "Candidate 1", "Candidate 2", "Candidate 3", "Candidate 4", "Candidate 5",
+            "Candidate 6", "Candidate 7", "Candidate 8", "Candidate 9", "Candidate 10",
+            "Candidate 11", "Candidate 12", "Candidate 13", "Candidate 14", "Candidate 15",
+            "Candidate 16", "Candidate 17", "Candidate 18", "Candidate 19"
+        ];
+
+        // Object to simulate backend storage: store ratings for each candidate
+        const ratingsData = {};
+        candidates.forEach(candidate => {
+            ratingsData[candidate] = [];
+        });
+
+        // Dynamically create rating inputs for each candidate
+        const container = document.getElementById('candidates');
+        candidates.forEach((name, index) => {
+            const div = document.createElement('div');
+            div.className = 'candidate';
+            div.innerHTML = `<label for="candidate-${index}">${name}:</label>
+                       <select id="candidate-${index}" name="${name}">
+                         ${Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join('')}
+                       </select>`;
+            container.appendChild(div);
+        });
+
+        // Function to compute and display average ratings
+        function updateAverages() {
+            let tableHTML = '<h3>Average Ratings</h3>';
+            tableHTML += '<table>';
+            tableHTML += '<tr><th>Candidate</th><th>Average Rating</th></tr>';
+            for (const candidate in ratingsData) {
+                const ratings = ratingsData[candidate];
+                let avg = ratings.length ? (ratings.reduce((sum, r) => sum + r, 0) / ratings.length).toFixed(2) : 'N/A';
+                tableHTML += `<tr><td>${candidate}</td><td>${avg}</td></tr>`;
+            }
+            tableHTML += '</table>';
+            document.getElementById('averageRatings').innerHTML = tableHTML;
+        }
+
+        // Form submission handler
+        document.getElementById('ratingForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            // Simple email format verification
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Collect and store ratings
+            candidates.forEach((name, index) => {
+                const rating = parseInt(document.getElementById(`candidate-${index}`).value);
+                ratingsData[name].push(rating);
+            });
+
+            alert('Ratings submitted successfully!');
+            updateAverages();
+
+            // Optionally, you can reset the form after submission if needed:\n      // document.getElementById('ratingForm').reset();
+        });
+    </script>
+</body>
+
+</html>

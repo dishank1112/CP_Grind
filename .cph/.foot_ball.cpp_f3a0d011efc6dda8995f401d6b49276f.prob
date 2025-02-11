@@ -1,0 +1,1 @@
+{"name":"Local: foot_ball","url":"e:\\CP\\foot_ball.cpp","tests":[{"id":1739196158119,"input":"1\n4 9 5","output":"8 4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\CP\\foot_ball.cpp","group":"local","local":true}

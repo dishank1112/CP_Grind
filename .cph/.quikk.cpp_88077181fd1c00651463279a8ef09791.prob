@@ -1,0 +1,1 @@
+{"name":"Local: quikk","url":"e:\\CP\\quikk.cpp","tests":[{"id":1735377167246,"input":"1\n5\n3 8 1 2 4","output":"1 2 3 4 8"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\CP\\quikk.cpp","group":"local","local":true}

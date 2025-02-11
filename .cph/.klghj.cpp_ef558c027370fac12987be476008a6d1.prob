@@ -1,0 +1,1 @@
+{"name":"Local: klghj","url":"e:\\CP\\klghj.cpp","tests":[{"id":1737787568016,"input":"1\n6 4 2\n3 2 4 8 7 5","output":"7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\CP\\klghj.cpp","group":"local","local":true}
