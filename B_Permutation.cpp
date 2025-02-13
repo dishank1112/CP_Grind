@@ -139,22 +139,23 @@ struct DSU {
 };
 
 void solve() {
-    int n;
-    cin >> n;
-    int ans  = 0;
-    for(int i=1;i<=n;i++){
-           if(n-i > 0)ans++;
-    }
-    cout<<ans<<"\n";
+    int n,k;
+    cin>>n>>k;
+
     
+    for(int i=0;i<n;i++){
+        if(i>0)cout<<" ";
+        if(k>0)cout<<2*i+2<<" "<<2*i+1;
+        else cout<<2*i+1<<" "<<2*i+2;
+        k--;
+    }
+
 }
-// well Hello there I am Jiraya U can send love letters later its really Nice to meet ya
+
 int main() {
     fast_io();
-    ll t;
-    cin >> t;
-    while (t--) {
+    
         solve();
-    }
+    
     return 0;
 }

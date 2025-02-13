@@ -139,16 +139,16 @@ struct DSU {
 };
 
 void solve() {
-    int n;
-    cin >> n;
-    int ans  = 0;
-    for(int i=1;i<=n;i++){
-           if(n-i > 0)ans++;
+    ll n, m;
+    cin >> n >> m;
+    if (m == n + 1 || (n > m && ((n - m + 1) % 9 == 0))){
+        cout << "Yes" << "\n";
+        return ;
     }
-    cout<<ans<<"\n";
-    
+    cout << "No" << "\n";
+    return ;
 }
-// well Hello there I am Jiraya U can send love letters later its really Nice to meet ya
+
 int main() {
     fast_io();
     ll t;

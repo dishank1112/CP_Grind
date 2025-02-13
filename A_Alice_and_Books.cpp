@@ -139,16 +139,36 @@ struct DSU {
 };
 
 void solve() {
-    int n;
-    cin >> n;
-    int ans  = 0;
-    for(int i=1;i<=n;i++){
-           if(n-i > 0)ans++;
+   int n;
+   cin>>n;
+   vector<int>arr(n);
+   read(arr);
+   if(arr.size() ==2){
+    cout<<arr[0]+arr[1]<<endl;
+    return ;
+   }
+   int maxi_ind = -1;
+   int maxi = -1;
+   for(int i=0;i<n;i++){
+    if(maxi < arr[i]){
+        maxi = arr[i];
+        maxi_ind = i;
     }
-    cout<<ans<<"\n";
-    
+   }
+   if(maxi_ind != n-1){
+     cout<<maxi+arr[n-1]<<endl;
+     return ;
+   }
+   else{
+    int sec_maxi=-1;
+    for(int i=0;i<n-1;i++){
+       sec_maxi=max(sec_maxi,arr[i]);
+    }
+    cout<<sec_maxi+maxi<<endl;
+   }
+
 }
-// well Hello there I am Jiraya U can send love letters later its really Nice to meet ya
+
 int main() {
     fast_io();
     ll t;
